@@ -1,0 +1,27 @@
+.top-buffer {
+  margin-top: 15px;
+}
+.alert {
+  margin-bottom: 15px;
+}
+.clearfix {
+  clear: both;
+  float: none;
+}
+.player-wrap {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background-color: #F1F1F1;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+}
+.player {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50px;
+}
