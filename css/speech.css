@@ -516,3 +516,24 @@ header, footer { height: 1px; }
 .answer_1 svg { width: 100%; margin: 0 auto; }
 
 #div_language, #div_language select { visibility: hidden !important; }
+
+.mic-state {
+  width: 100%;
+  height: 10px;
+}
+.mic-state.off {
+  background-color: red;
+}
+.mic-state.on {
+  background-color: green;
+}
+.try-again,
+.feedback-wrapper,
+.start-mic,
+.question-hidden  {
+  display: none;
+}
+.start-mic,
+.stop-mic {
+  margin-top: 15px;
+}
