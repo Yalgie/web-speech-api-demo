@@ -31,7 +31,7 @@ $(function() {
             var interim_transcript = '';
             for (var i = event.resultIndex; i < event.results.length; ++i) {
                 if (event.results[i].isFinal) {
-                    final_transcript += event.results[i][0].transcript;
+                    final_transcript = event.results[i][0].transcript;
                 } else {
                     interim_transcript += event.results[i][0].transcript;
                 }
@@ -105,6 +105,8 @@ $(function() {
             current.removeClass("question_active").addClass("question_hidden")
             current.next().removeClass("question_hidden").addClass("question_active")
           }
+          final_transcript = ""
+          interim_transcript = ""
         }
 
         function resetActivity() {
