@@ -25,3 +25,20 @@
   background-color: red;
   border-radius: 50px;
 }
+
+
+
+/* Activity CSS */
+.question-hidden {
+  display: none;
+}
+.question-wrapper div img {
+  margin: 0 auto;
+  display: block;
+}
+#info {
+  display: none;
+}
+.top-buffer {
+  margin-top: 15px;
+}

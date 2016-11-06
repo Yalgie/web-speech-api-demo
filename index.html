@@ -27,29 +27,35 @@
                         <p id="info_upgrade">Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
                     </div>
 
-                    <p>Click the mic button and say:</p>
-                    <ul>
-                        <li>Move Up</li>
-                        <li>Move Down</li>
-                        <li>Move Left</li>
-                        <li>Move Right</li>
-                    </ul>
-                    <p>Unclick the mic button to complete the command.</p>
-                    <div class="start-btn-wrap">
+
+                    <div class="top-buffer start-btn-wrap">
                         <button class="btn btn-default" id="start_button" onclick="startButton(event)">
-                            <img id="start_img" src="mic.gif" alt="Start">
+                            <img id="start_img" src="images/mic.gif" alt="Start">
                         </button>
 
                         <span id="final_span" class="final"></span>
                         <span id="interim_span" class="interim"></span>
                     </div>
 
-                    <div class="player-wrap">
-                        <div class="player"></div>
-                    </div>
+                    <hr>
 
+                    <div class="question-wrapper">
+                        <div class="question-1 question-active">
+                            <h1 class="text-center">What Shape Is This?</h1>
+                            <img src="http://placehold.it/200x200?text=Triangle">
+                        </div>
+                        <div class="question-2 question-hidden">
+                            <h1 class="text-center">What Shape Is This?</h1>
+                            <img src="http://placehold.it/200x200?text=Square">
+                        </div>
+                        <div class="question-3 question-hidden">
+                            <h1 class="text-center">What Does 2+2 equal?</h1>
+                            <img src="http://placehold.it/200x200?text=4">
+                        </div>
+                    </div>
                     
-                    
+                    <hr>
+
                     <div id="div_language">
                         <label>Language</label>
                         <select class="form-control" id="select_language" onchange="updateCountry()"></select>
@@ -63,6 +69,7 @@
                 </div> 
             </div>
         </div>
+
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="js/speech.js"></script>
     </body>

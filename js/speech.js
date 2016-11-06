@@ -1,3 +1,6 @@
+var questionCount = 1;
+var correctCount = 0;
+
 var langs = [
   ['Afrikaans', ['af-ZA']],
   ['Bahasa Indonesia', ['id-ID']],
@@ -97,17 +100,17 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onstart = function() {
     recognizing = true;
     showInfo('info_speak_now');
-    start_img.src = 'mic-animate.gif';
+    start_img.src = '/images/mic-animate.gif';
   };
 
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      start_img.src = 'mic.gif';
+      start_img.src = '/images/mic.gif';
       showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
-      start_img.src = 'mic.gif';
+      start_img.src = '/images/mic.gif';
       showInfo('info_no_microphone');
       ignore_onend = true;
     }
@@ -126,7 +129,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (ignore_onend) {
       return;
     }
-    start_img.src = 'mic.gif';
+    start_img.src = '/images/mic.gif';
     if (!final_transcript) {
       showInfo('info_start');
       return;
@@ -155,24 +158,47 @@ if (!('webkitSpeechRecognition' in window)) {
 
     if (final_transcript.length > 0) {
       var command = final_transcript.toLowerCase()
-      var top = parseInt($(".player").css("top").split("px")[0])
-      var left = parseInt($(".player").css("left").split("px")[0])
-      console.log(top)
-      if (command == "move up") {
-        $(".player").animate({"top": top - 100}, {queue: false})
-      }
-      if (command == "move down") {
-        $(".player").animate({"top": top + 100}, {queue: false})
-      }
-      if (command == "move left") {
-        $(".player").animate({"left": left - 100}, {queue: false})
-      }
-      if (command == "move right") {
-        $(".player").animate({"left": left + 100}, {queue: false})
-      }
+      checkCommand(command)
+      console.log(command)
     }
-
+    else if (interim_transcript.length > 0) {
+      var command = interim_transcript.toLowerCase()
+      checkCommand(command)
+      console.log(command)
+    }
   };
+}
+
+function checkCommand(command) {
+  if (questionCount == 1) {
+    if (command.indexOf("triangle") >= 0) {
+      questionCount++
+      changeQuestion()
+    }
+  }
+  else if (questionCount == 2) {
+    if (command.indexOf("square") >= 0) {
+      questionCount++
+      changeQuestion()
+    }
+  }
+  else if (questionCount == 3) {
+    if (command.indexOf("4") >= 0 || command.indexOf("four") >= 0) {
+      questionCount++
+      changeQuestion()
+    }
+  }
+}
+
+function changeQuestion() {
+  if ($(".question-wrapper").children().length + 1 == questionCount) {
+    alert("Done")
+  }
+  else {
+    var current = $(".question-active")
+    current.removeClass("question-active").addClass("question-hidden")
+    current.next().removeClass("question-hidden").addClass("question-active")
+  }
 }
 
 function upgrade() {
@@ -202,7 +228,7 @@ function startButton(event) {
   ignore_onend = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
-  start_img.src = 'mic-slash.gif';
+  start_img.src = '/images/mic-slash.gif';
   showInfo('info_allow');
   start_timestamp = event.timeStamp;
 }
