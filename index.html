@@ -7,67 +7,81 @@
         <title>Web Speech API</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/speech.css">
     </head>
 
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+		<div id="wrap">
+			<main>
+				<div class="top-buffer alert alert-info" id="info">
+					<p id="info_start">Click on the microphone icon and begin speaking.</p>
+					<p id="info_speak_now">Speak now.</p>
+					<p id="info_no_speech">No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a></p>
+					<p id="info_no_microphone" style="display:none">No microphone was found. Ensure that a microphone is installed and that <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a> are configured correctly.</p>
+					<p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
+					<p id="info_denied">Permission to use microphone was denied.</p>
+					<p id="info_blocked">Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream</p>
+					<p id="info_upgrade">Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
+				</div>
 
-                    <div class="top-buffer alert alert-info" id="info">
-                        <p id="info_start">Click on the microphone icon and begin speaking.</p>
-                        <p id="info_speak_now">Speak now.</p>
-                        <p id="info_no_speech">No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a></p>
-                        <p id="info_no_microphone" style="display:none">No microphone was found. Ensure that a microphone is installed and that <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a> are configured correctly.</p>
-                        <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
-                        <p id="info_denied">Permission to use microphone was denied.</p>
-                        <p id="info_blocked">Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream</p>
-                        <p id="info_upgrade">Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
-                    </div>
+				<div class="top-buffer start-btn-wrap">
+					<button class="btn btn-default" id="start_button" onclick="startButton(event)">
+						<img id="start_img" src="images/mic.gif" alt="Start">
+					</button>
 
+					<span id="final_span" class="final"></span>
+					<span id="interim_span" class="interim"></span>
+				</div>
 
-                    <div class="top-buffer start-btn-wrap">
-                        <button class="btn btn-default" id="start_button" onclick="startButton(event)">
-                            <img id="start_img" src="images/mic.gif" alt="Start">
-                        </button>
+				<div class="clear"></div>
 
-                        <span id="final_span" class="final"></span>
-                        <span id="interim_span" class="interim"></span>
-                    </div>
+				<div class="question_wrapper">
+					<div class="container">
+						
+						<!-- Question 1 -->
+						<div class="question-active">
+							<h1 class="question_title center">What Shape Is This?</h1>
+							<div class="question_content">
+								<div class="answer_1 center">
+									<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+										<polygon points="50 160, 84 205, 35 205, 40 190" stroke="#008000" fill="#0f8d0f" stroke-width="5"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Question 2 -->
+						<div class="question_hidden">
+							<h1 class="question_title center">What Shape Is This?</h1>
+							<div class="question_content">
+								<div class="answer_1 center">
+									<svg width="200" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+										<rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/>
 
-                    <hr>
+										<rect x="60" y="10" rx="10" ry="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/>
+									</svg>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Question 3 -->
+						<div class="question_hidden">
+							<h1 class="center">What Does 2+2 equal?</h1>
+							<img src="http://placehold.it/200x200?text=4">
+						</div>
+					</div>
+				</div>
 
-                    <div class="question-wrapper">
-                        <div class="question-1 question-active">
-                            <h1 class="text-center">What Shape Is This?</h1>
-                            <img src="http://placehold.it/200x200?text=Triangle">
-                        </div>
-                        <div class="question-2 question-hidden">
-                            <h1 class="text-center">What Shape Is This?</h1>
-                            <img src="http://placehold.it/200x200?text=Square">
-                        </div>
-                        <div class="question-3 question-hidden">
-                            <h1 class="text-center">What Does 2+2 equal?</h1>
-                            <img src="http://placehold.it/200x200?text=4">
-                        </div>
-                    </div>
-                    
-                    <hr>
+				<div id="div_language">
+					<label>Language</label>
+					<select class="form-control" id="select_language" onchange="updateCountry()"></select>
 
-                    <div id="div_language">
-                        <label>Language</label>
-                        <select class="form-control" id="select_language" onchange="updateCountry()"></select>
-                        
-                        <div class="clearfix"></div>
+					<div class="clearfix"></div>
 
-                        <label class="top-buffer">Dialect</label>
-                        <select class="form-control" id="select_dialect"></select>
-                    </div>
-
-                </div> 
-            </div>
+					<label class="top-buffer">Dialect</label>
+					<select class="form-control" id="select_dialect"></select>
+				</div>
+			</main>
         </div>
 
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
