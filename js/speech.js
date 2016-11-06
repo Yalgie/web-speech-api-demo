@@ -90,20 +90,20 @@ $(function() {
         }
 
         function changeQuestion() {
-          if ($(".question-wrapper").children().length == questionCount) {
+          if ($(".question_wrapper").children().length == questionCount) {
             var feedback = "<p>You Got: " + correctCount + "/" + questionCount + " Questions Correct" + "</p><button>Reset</button>"
-            $(".feedback-wrapper").html(feedback)
-            $(".feedback-wrapper").show()
-            $(".question-wrapper").hide()
+            $(".feedback_wrapper").html(feedback)
+            $(".feedback_wrapper").show()
+            $(".question_wrapper").hide()
             resetScreen = true
-            $(".feedback-wrapper").find("button").on("click", function() {
+            $(".feedback_wrapper").find("button").on("click", function() {
               resetActivity()
             })
           }
           else {
-            var current = $(".question-active")
-            current.removeClass("question-active").addClass("question-hidden")
-            current.next().removeClass("question-hidden").addClass("question-active")
+            var current = $(".question_active")
+            current.removeClass("question_active").addClass("question_hidden")
+            current.next().removeClass("question_hidden").addClass("question_active")
           }
         }
 
@@ -111,16 +111,16 @@ $(function() {
           questionCount = 0
           correctCount = 0
           resetScreen = false
-          $(".question-wrapper").children().each(function(i) {
+          $(".question_wrapper").children().each(function(i) {
             if (i == 0) {
-              $(this).addClass("question-active").removeClass("question-hidden")
+              $(this).addClass("question_active").removeClass("question_hidden")
             }
-            if (i == $(".question-wrapper").children().length - 1) {
-              $(this).removeClass("question-active").addClass("question-hidden")
+            if (i == $(".question_wrapper").children().length - 1) {
+              $(this).removeClass("question_active").addClass("question_hidden")
             }
           })
-          $(".feedback-wrapper").hide()
-          $(".question-wrapper").show()
+          $(".feedback_wrapper").hide()
+          $(".question_wrapper").show()
         }
 
         $(".stop-mic").click(function() {
