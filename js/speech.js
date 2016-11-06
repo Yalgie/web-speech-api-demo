@@ -191,13 +191,13 @@ function checkCommand(command) {
 }
 
 function changeQuestion() {
-  if ($(".question-wrapper").children().length + 1 == questionCount) {
+  if ($(".question_wrapper").children().length + 1 == questionCount) {
     alert("Done")
   }
   else {
     var current = $(".question-active")
-    current.removeClass("question-active").addClass("question-hidden")
-    current.next().removeClass("question-hidden").addClass("question-active")
+    current.removeClass("question-active").addClass("question_hidden")
+    current.next().removeClass("question_hidden").addClass("question-active")
   }
 }
 
